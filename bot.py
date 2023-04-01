@@ -1,6 +1,6 @@
 import re
 import sys
-from discord import Client
+from discord import Client, Intents
 from comment_parser import CommentParser
 
 if len(sys.argv) != 2:
@@ -9,7 +9,9 @@ if len(sys.argv) != 2:
 
 token = sys.argv[1]
 
-client = Client()
+intents = Intents.default()
+intents.message_content = True
+client = Client(intents=intents)
 commentParser = CommentParser()
 
 @client.event
